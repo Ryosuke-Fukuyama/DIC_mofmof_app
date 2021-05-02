@@ -8,14 +8,11 @@ class BuildingsController < ApplicationController
   def new
     if params[:back]
       @building = Building.new(building_params)
+      2.time{@building.build_station}
     else
       @building = Building.new
+      2.tiime{@building.build_station}
     end
-  end
-
-  def confirm
-    @building = current_user.buildings.build(building_params)
-    render :new if @building.invalid?
   end
 
   def create
@@ -24,7 +21,7 @@ class BuildingsController < ApplicationController
       render :new
     else
       if @building.save
-        redirect_to buildings_path, notice: "情報を追加しました！"
+        redirect_to buildings_path
       else
         render :new
       end
@@ -39,7 +36,7 @@ class BuildingsController < ApplicationController
 
   def update
     if @building.update(building_params)
-      redirect_to buildings_path, notice: "情報を編集しました！"
+      redirect_to buildings_path
     else
       render :edit
     end
@@ -47,12 +44,17 @@ class BuildingsController < ApplicationController
 
   def destroy
     @building.destroy
-    redirect_to buildings_path, notice:"情報を削除しました！"
+    redirect_to buildings_path
   end
 
   private
 
   def building_params
-    params.require(:building).permit(:image, :image_cache, :content)
+    params.require(:building).permit(:name, :price, :address, :old, :comment,
+                                     station_attributes: [:name, :route_name, :time, :id])
+  end
+
+  def set_params
+    @building = Building.find(params[:id])
   end
 end

@@ -1,2 +1,21 @@
-<h1>Buildings#show</h1>
-<p>Find me in app/views/buildings/show.html.erb</p>
+<heder><h1>閲覧</h1></heder>
+
+<p id="notice"><%= notice %></p>
+<tr><%= building.name %></tr>
+<tr><%= building.price "円" %></tr>
+<tr><%= building.address "年" %></tr>
+<tr><%= building.old %></tr>
+<tr><%= building.comment %></tr>
+
+<th>"最寄り駅１"</th>
+<tr><%= building.station.route_name "線" %></tr>
+<tr><%= building.station.name "駅" %></tr>
+<tr><%= building.station.time "分" %></tr>
+<th>"最寄り駅２"</th>
+<tr><%= building.station.route_name "線" %></tr>
+<tr><%= building.station.name "駅" %></tr>
+<tr><%= building.station.time "分" %></tr>
+
+
+<%= link_to '編集', edit_building_path(@building) %> |
+<%= link_to '戻る', buildings_path %>

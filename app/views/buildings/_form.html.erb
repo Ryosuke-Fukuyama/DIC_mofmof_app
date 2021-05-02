@@ -1,2 +1,34 @@
-<h1>Buildings#_form</h1>
-<p>Find me in app/views/buildings/_form.html.erb</p>
+<% if @building.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @building.errors.count %>件のエラーがあります。</h2>
+    <ul>
+    <% @building.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for @building do |f| %>
+  <div class="building_title">
+    <tr><%= f.label :name, "物件名" %></tr>
+    <tr><%= f.string_field :name %></tr>
+    <tr><%= f.label :price, "賃料" %></tr>
+    <tr><%= f.integer_field :price %><%= "円" %></tr>
+    <tr><%= f.label :address, "住所" %></tr>
+    <tr><%= f.string_field :address %></tr>
+    <tr><%= f.label :old, "築年数" %></tr>
+    <tr><%= f.integer_field :old %><%= "年" %></tr>
+    <tr><%= f.label :comment, "備考" %></tr>
+    <tr><%= f.text_field :comment %></tr>
+  </div>
+
+  <%= f.fields_for :station do |s| %>
+    <div class="station_title"></tr>
+      <tr><%= s.label :route_name,  "路線名" %></tr>
+      <tr><%= s.string_field :route_name %></tr>
+      <tr><%= s.label :name, "駅名" %></tr>
+      <tr><%= s.string_field :name %></tr>
+      <tr><%= s.label :time, "徒歩分数" %></tr>
+      <tr><%= s.integer_field :time %><%= "分" %></tr>
+    </div>
+  <% end %>

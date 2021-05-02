@@ -1,2 +1,8 @@
-<h1>Buildings#edit</h1>
-<p>Find me in app/views/buildings/edit.html.erb</p>
+<heder><h1>編集</h1></heder>
+
+<h3>物件編集</h3>
+  <%= render 'form' %>
+  <%= f.submit "更新する" %>
+<% end %>
+<%= link_to '詳細', building_path(building.id) %> |
+<%= link_to '戻る', buildings_path %>
