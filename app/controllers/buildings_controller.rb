@@ -1,5 +1,5 @@
 class BuildingsController < ApplicationController
-  before_action :set_building, only: [:show, :edit, :update, :destroy]
+  before_action :set_params, only: [:show, :edit, :update, :destroy]
 
   def index
     @buildings = Building.all
