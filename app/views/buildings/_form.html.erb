@@ -10,25 +10,44 @@
 <% end %>
 <%= form_for @building do |f| %>
   <div class="building_title">
-    <tr><%= f.label :name, "物件名" %></tr>
-    <tr><%= f.string_field :name %></tr>
-    <tr><%= f.label :price, "賃料" %></tr>
-    <tr><%= f.integer_field :price %><%= "円" %></tr>
-    <tr><%= f.label :address, "住所" %></tr>
-    <tr><%= f.string_field :address %></tr>
-    <tr><%= f.label :old, "築年数" %></tr>
-    <tr><%= f.integer_field :old %><%= "年" %></tr>
-    <tr><%= f.label :comment, "備考" %></tr>
-    <tr><%= f.text_field :comment %></tr>
-  </div>
+    <p>
+      <%= f.label :name, "物件名" %><br>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :price, "賃料" %><br>
+      <%= f.number_field :price %>円
+    </p>
+    <p>
+      <%= f.label :address, "住所" %><br>
+      <%= f.text_field :address %>
+    </p>
+      <%= f.label :old, "築年数" %><br>
+      <%= f.number_field :old %>年
+    </p>
+    <p>
+      <%= f.label :comment, "備考" %><br>
+      <%= f.text_area :comment %>
+    </p>
 
-  <%= f.fields_for :station do |s| %>
-    <div class="station_title"></tr>
-      <tr><%= s.label :route_name,  "路線名" %></tr>
-      <tr><%= s.string_field :route_name %></tr>
-      <tr><%= s.label :name, "駅名" %></tr>
-      <tr><%= s.string_field :name %></tr>
-      <tr><%= s.label :time, "徒歩分数" %></tr>
-      <tr><%= s.integer_field :time %><%= "分" %></tr>
-    </div>
-  <% end %>
+    <hr>
+
+    <%= f.fields_for :station do |s| %>
+      <% i = 1 %>
+        <h3><%= "最寄り駅 #{i}" %></h3>
+        <p>
+          <%= s.label :route_name,  "路線名" %><br>
+          <%= s.text_field :route_name %>
+        </p>
+        <p>
+          <%= s.label :name, "駅名" %><br>
+          <%= s.text_field :name %>
+        </p>
+        <p>
+          <%= s.label :time, "徒歩分数" %><br>
+          <%= s.number_field :time %>分
+        </p>
+        <% i += 1 %>
+    <% end %>
+  </div>
+<% end %>

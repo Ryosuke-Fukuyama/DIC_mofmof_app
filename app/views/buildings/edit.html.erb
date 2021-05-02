@@ -1,7 +1,8 @@
 <heder><h1>編集</h1></heder>
 
-<h3>物件編集</h3>
-  <%= render 'form' %>
+<h2>物件編集</h2>
+<%= render 'form' %>
+<%= form_for @building do |f| %>
   <%= f.submit "更新する" %>
 <% end %>
 <%= link_to '詳細', building_path(building.id) %> |

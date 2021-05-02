@@ -1,7 +1,9 @@
 <heder><h1>登録</h1></heder>
 
-<h3>"物件登録"</h3>
-  <%= render 'form' %>
+
+<h2>物件登録</h2>
+<%= render 'form' %>
+<%= form_for @building do |f| %>
   <%= f.submit "登録する" %>
 <% end %>
 <%= link_to '戻る', buildings_path %>

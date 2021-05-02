@@ -8,15 +8,15 @@ class BuildingsController < ApplicationController
   def new
     if params[:back]
       @building = Building.new(building_params)
-      2.time{@building.build_station}
+      2.times{@building.stations.build}
     else
       @building = Building.new
-      2.tiime{@building.build_station}
+      2.times{@building.stations.build}
     end
   end
 
   def create
-    @building = current_user.buildings.build(building_params)
+    @building = Building.new(building_params)
     if params[:back]
       render :new
     else
