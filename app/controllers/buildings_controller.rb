@@ -51,7 +51,7 @@ class BuildingsController < ApplicationController
 
   def building_params
     params.require(:building).permit(:name, :price, :address, :old, :comment,
-                                     station_attributes: [:name, :route_name, :time, :id])
+                                     stations_attributes: [:id, :name, :route_name, :time, :building_id, :_destroy])
   end
 
   def set_params

@@ -1,19 +1,19 @@
 <heder><h1>閲覧</h1></heder>
 
-<p>物件名：<%= building.name %></p>
-<p>賃料：<%= building.price %>円</p>
-<p>住所：<%= building.address %></p>
-<p>築年数&nbsp;<%= building.old %>年</p>
-<p>備考&nbsp;<%= building.comment %></p>
+<p>物件名：<%= @building.name %></p>
+<p>賃料：<%= @building.price %>円</p>
+<p>住所：<%= @building.address %></p>
+<p>築年数&nbsp;<%= @building.old %>年</p>
+<p>備考&nbsp;<%= @building.comment %></p
 
 <hr>
 
 <% i = 1 %>
-<% @building.stations.each do |t| %>
+<% @building.stations.each do |s| %>
   <h3><%= "最寄り駅#{i}" %></h3>
-  <p>路線名&nbsp;<%= building.station(id: 1).route_name %>線</p>
-  <p>駅名&nbsp;<%= building.station(id: 1).name %>駅</p>
-  <p>徒歩分数&nbsp;<%= building.station(id: 1).time %>分</p>
+  <p>路線名&nbsp;<%= s.route_name %>線</p>
+  <p>駅名&nbsp;<%= s.name %>駅</p>
+  <p>徒歩分数&nbsp;<%= s.time %>分</p>
   <% i += 1 %>
 <% end %>
 
