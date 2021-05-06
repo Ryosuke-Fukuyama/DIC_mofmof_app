@@ -6,13 +6,8 @@ class BuildingsController < ApplicationController
   end
 
   def new
-    if params[:back]
-      @building = Building.new(building_params)
-      2.times{@building.stations.build}
-    else
-      @building = Building.new
-      2.times{@building.stations.build}
-    end
+    @building = Building.new
+    2.times{@building.stations.build}
   end
 
   def create
@@ -32,6 +27,7 @@ class BuildingsController < ApplicationController
   end
 
   def edit
+    @building.stations.build
   end
 
   def update
