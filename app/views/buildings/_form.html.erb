@@ -1,0 +1,58 @@
+<% if @building.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @building.errors.count %>件のエラーがあります。</h2>
+    <ul>
+    <% @building.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_for @building do |f| %>
+  <div class="building_title">
+    <p>
+      <%= f.label :name, "物件名" %><br>
+      <%= f.text_field :name %>
+    </p>
+    <p>
+      <%= f.label :price, "賃料" %><br>
+      <%= f.number_field :price %>円
+    </p>
+    <p>
+      <%= f.label :address, "住所" %><br>
+      <%= f.text_field :address %>
+    </p>
+      <%= f.label :old, "築年数" %><br>
+      <%= f.number_field :old %>年
+    </p>
+    <p>
+      <%= f.label :comment, "備考" %><br>
+      <%= f.text_area :comment %>
+    </p>
+
+    <hr>
+
+    <% i = 1 %>
+    <%= f.fields_for :stations do |s| %>
+      <h3><%= "最寄り駅 #{i}" %></h3>
+      <p>
+        <%= s.label :route_name,  "路線名" %><br>
+        <%= s.text_field :route_name %>
+      </p>
+      <p>
+        <%= s.label :name, "駅名" %><br>
+        <%= s.text_field :name %>
+      </p>
+      <p>
+        <%= s.label :time, "徒歩分数" %><br>
+        <%= s.number_field :time %>分
+      </p>
+      <% i += 1 %>
+    <% end %>
+  </div>
+  <% if controller.action_name == "new" %>
+    <%= f.submit '登録する' %>
+  <% else controller.action_name == "edit" %>
+    <%= f.submit '更新する' %>
+  <% end %>
+<% end %>

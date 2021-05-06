@@ -1,0 +1,32 @@
+<heder><h1>一覧</h1></heder>
+
+<hr>
+
+<h2>物件一覧</h3>
+<table>
+  <tr>
+    <th>物件名</th>
+    <th>賃料</th>
+    <th>住所</th>
+    <th>築年数</th>
+    <th>備考</th>
+  </tr>
+  <% @buildings.each do |building| %>
+    <tr>
+      <td><%= building.name %></td>
+      <td><%= building.price %>円</td>
+      <td><%= building.address %></td>
+      <td><%= building.old %>年</td>
+      <td><%= building.comment %></td>
+      <div class=vertical>
+        <td><%= link_to '詳細', building_path(building.id) %></td>
+        <td><%= link_to "編集", edit_building_path(building.id) %></td>
+        <td><%= link_to '削除', building_path(building.id),
+          method: :delete,data: { confirm: '削除しますか？' } %>
+        </td>
+      </div>
+    </tr>
+  <% end %>
+</table>
+<br>
+<%= link_to '物件を登録する', new_building_path %>
